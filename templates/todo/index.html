@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1 class="text-center">Todo List</h1>
+  <a href="" class="btn btn-primary">Add new task</a>
+  <br>
+  <hr>
   <div class="row">
     <div class="col-md-12">
       {% for task in task_list %}
@@ -9,9 +13,9 @@
             <p>{{ task.content }} | {% if task.completed %}<span class="alert-success">Done</span> {% else %} <a class="alert-danger">Not Done</a> {% endif %}</p>
             <div class="btn-group" role="group">
               {% if task.completed %}
-                <a class="btn btn-secondary btn-sm" href="{% url "todo:change_task_status" pk=task.pk %}">Undo</a>
+                <a class="btn btn-secondary btn-sm" href="{% url "todo:change-task-status" pk=task.pk %}">Undo</a>
               {% else %}
-                <a class="btn btn-primary btn-sm" href="{% url "todo:change_task_status" pk=task.pk %}">Complete</a>
+                <a class="btn btn-primary btn-sm" href="{% url "todo:change-task-status" pk=task.pk %}">Complete</a>
               {% endif %}
             </div>
           </div>
@@ -19,8 +23,8 @@
             <p>Created: {{ task.created_at }}</p>
           </div>
           <div class="list-group-item">
-            <p class="text-secondary">Tags: {% for tag in task.tags.all %} <span class="badge bg-secondary text-light">{{ tag.name}}</span> {% endfor %}
-              <a href="/">Update</a> <a href="">Delete</a>
+            <p class="text-secondary">Tags: {% for tag in task.tags.all %} <span class="badge bg-secondary text-light">{{ tag.name }}</span> {% endfor %}
+              <a href="/">Update</a> <a href="{% url "todo:task-delete" pk=task.pk %}">Delete</a>
             </p>
           </div>
         </div>

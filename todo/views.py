@@ -12,6 +12,11 @@ class TaskListView(generic.ListView):
         return Task.objects.all()
 
 
+class TaskDeleteView(generic.DeleteView):
+    model = Task
+    success_url = "/"
+
+
 def change_task_status(request, pk):
     task = Task.objects.get(pk=pk)
     task.completed = not task.completed
