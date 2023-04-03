@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.views import generic
 
-from .forms import TaskForm
+from .forms import TaskForm, TagForm
 from .models import Task, Tag
 
 
@@ -35,3 +35,26 @@ def change_task_status(request, pk):
     task.completed = not task.completed
     task.save()
     return redirect("todo:index")
+
+
+class TagListView(generic.ListView):
+    model = Tag
+    template_name = "todo/tag_list.html"
+
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    form_class = TagForm
+    success_url = "/tags/"
+
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    form_class = TagForm
+    success_url = "/tags/"
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = "/tags/"
+
