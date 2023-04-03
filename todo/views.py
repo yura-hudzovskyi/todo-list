@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.views import generic
 
+from .forms import TaskForm
 from .models import Task, Tag
 
 
@@ -14,6 +15,18 @@ class TaskListView(generic.ListView):
 
 class TaskDeleteView(generic.DeleteView):
     model = Task
+    success_url = "/"
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = "/"
+
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    form_class = TaskForm
     success_url = "/"
 
 
