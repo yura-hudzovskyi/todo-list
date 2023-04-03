@@ -7,7 +7,9 @@ from todo.views import (
     TaskCreateView,
     TaskUpdateView,
     TagListView,
-    TagCreateView, TagUpdateView, TagDeleteView,
+    TagCreateView,
+    TagUpdateView,
+    TagDeleteView,
 )
 
 urlpatterns = [
