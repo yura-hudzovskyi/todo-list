@@ -8,6 +8,7 @@ from .models import Task, Tag
 class TaskListView(generic.ListView):
     model = Task
     template_name = "todo/index.html"
+    paginate_by = 3
 
     def get_queryset(self):
         return Task.objects.all()
