@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="text-center">Todo List</h1>
+  <a href="{% url "todo:task-create" %}" class="btn btn-primary">Add new task</a>
+  <br>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      {% for task in task_list %}
+        <div class="list-group mb-3">
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <p><strong>{{ task.content }}</strong> | {% if task.completed %}<span class="text-success"><strong>Done</strong></span> {% else %} <a class="text-danger"><strong>Not Done</strong></a> {% endif %}</p>
+            <div class="btn-group" role="group">
+              {% if task.completed %}
+                <a class="btn btn-secondary btn-sm" href="{% url "todo:change-task-status" pk=task.pk %}">Undo</a>
+              {% else %}
+                <a class="btn btn-primary btn-sm" href="{% url "todo:change-task-status" pk=task.pk %}">Complete</a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="list-group-item">
+            <p>Created: {{ task.created_at }} {% if task.deadline %}<span class="text-danger">Deadline: {{ task.deadline }}</span>{% endif %}</p>
+          </div>
+          <div class="list-group-item">
+            <p class="text-secondary">Tags: {% for tag in task.tags.all %} <span class="badge bg-secondary text-light">{{ tag.name }}</span> {% endfor %}
+              <a href="{% url "todo:task-update" pk=task.pk %}">Update</a> <a href="{% url "todo:task-delete" pk=task.pk %}">Delete</a>
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
