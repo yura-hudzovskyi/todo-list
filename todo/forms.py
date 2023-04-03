@@ -11,7 +11,7 @@ class DateInput(forms.DateInput):
 
 class TaskForm(forms.ModelForm):
     tags = forms.ModelMultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple(attrs={"class": "scrollable-checkbox-list"}),
+        widget=forms.CheckboxSelectMultiple(),
         queryset=Tag.objects.all(),
         required=False,
     )

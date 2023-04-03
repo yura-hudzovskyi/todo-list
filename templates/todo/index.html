@@ -10,7 +10,7 @@
       {% for task in task_list %}
         <div class="list-group mb-3">
           <div class="list-group-item d-flex justify-content-between align-items-center">
-            <p><strong>{{ task.content }}</strong> | {% if task.completed %}<span class="alert-success">Done</span> {% else %} <a class="alert-danger">Not Done</a> {% endif %}</p>
+            <p><strong>{{ task.content }}</strong> | {% if task.completed %}<span class="text-success"><strong>Done</strong></span> {% else %} <a class="text-danger"><strong>Not Done</strong></a> {% endif %}</p>
             <div class="btn-group" role="group">
               {% if task.completed %}
                 <a class="btn btn-secondary btn-sm" href="{% url "todo:change-task-status" pk=task.pk %}">Undo</a>
